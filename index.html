@@ -32,14 +32,38 @@
       100% { background-position: 0% 50%; }
     }
     .logo-placeholder {
-      max-width: 150px;
+      max-width: 200px;
       height: auto;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       background-color: #f0f0f0;
       padding: 20px;
       text-align: center;
       font-size: 1.2rem;
       color: #666;
+      border-radius: 15px;
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto 20px;
+    }
+    .logo-placeholder::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 0, 255, 0.3),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: neonLight 3s linear infinite;
+    }
+    @keyframes neonLight {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
     }
     .filter-container {
       display: flex;
@@ -56,7 +80,7 @@
     }
     .product-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 30px;
       margin: 30px 0;
     }
@@ -68,6 +92,8 @@
       transition: transform 0.5s, box-shadow 0.5s;
       transform-style: preserve-3d;
       transform: perspective(1000px) rotateY(0deg);
+      position: relative;
+      overflow: hidden;
     }
     .product-card:hover {
       transform: perspective(1000px) rotateY(10deg);
@@ -75,7 +101,7 @@
     }
     .product-img-placeholder {
       width: 100%;
-      height: 200px;
+      height: 250px;
       background-color: #f0f0f0;
       border-radius: 10px;
       margin-bottom: 15px;
@@ -84,6 +110,39 @@
       justify-content: center;
       font-size: 1rem;
       color: #666;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-img-placeholder img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+    .product-card:hover .product-img-placeholder img {
+      transform: scale(1.05);
+    }
+    .product-img-placeholder::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 0, 255, 0.3),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: neonLight 3s linear infinite;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .product-card:hover .product-img-placeholder::before {
+      opacity: 1;
     }
     .product-title {
       color: #2e7d32;
@@ -290,7 +349,7 @@
 <body>
 
   <div class="header">
-    <div class="logo-placeholder"><img src="https://i.postimg.cc/d0q07dWb/IMG-20250804-WA0006.jpg" alt="Product Image" width="100%" style="max-width:300px;border-radius:10px;margin-top:10px;"></div>
+    <div class="logo-placeholder"><img src="https://i.postimg.cc/d0q07dWb/IMG-20250804-WA0006.jpg" alt="SA Mart Logo" style="max-width:100%;border-radius:10px;"></div>
     <h1>SA Mart</h1>
     <p>প্রিমিয়াম গিফটস ও ডেকোর</p>
   </div>
@@ -314,7 +373,7 @@
   <div class="product-container" id="productContainer">
     <!-- Existing Products with Discounts -->
     <div class="product-card" data-price="200" data-category="box">
-      <div class="product-img-placeholder"><img src="https://i.postimg.cc/7ZHqNz7w/IMG-20250804-WA0000.jpg" alt="Product Image" width="90%" style="max-width:120px;border-radius:10px;margin-top:9px;"></div>
+      <div class="product-img-placeholder"><img src="https://i.postimg.cc/7ZHqNz7w/IMG-20250804-WA0000.jpg" alt="কলম বক্স"></div>
       <h3 class="product-title">কলম বক্স</h3>
       <p>এক্সক্লুসিভ হ্যান্ডমেড কাঠের কলম বক্স</p>
       <div class="product-price">
@@ -325,7 +384,7 @@
     </div>
 
     <div class="product-card" data-price="373" data-category="box">
-      <div class="product-img-placeholder"><img src="https://i.postimg.cc/jjG5v5tc/file-00000000d66861fda6d4f0b44b8322d3.png" alt="Product Image" width="90%" style="max-width:100px;border-radius:8px;margin-top:8px;"></div>
+      <div class="product-img-placeholder"><img src="https://i.postimg.cc/jjG5v5tc/file-00000000d66861fda6d4f0b44b8322d3.png" alt="কুরআন স্টোরেজ বক্স"></div>
       <h3 class="product-title">কুরআন স্টোরেজ বক্স</h3>
       <p>পবিত্র কুরআন শরীফ সংরক্ষণের জন্য কাঠের বাক্স <span class="gift-badge">ফ্রি তাজবিহ</span></p>
       <div class="product-price">
@@ -336,7 +395,7 @@
     </div>
 
     <div class="product-card" data-price="250" data-category="box">
-      <div class="product-img-placeholder"><img src="https://i.postimg.cc/XNBcyXZT/IMG-20250804-WA0002.jpg" alt="Product Image" width="100%" style="max-width:200px;border-radius:9px;margin-top:9px;"></div>
+      <div class="product-img-placeholder"><img src="https://i.postimg.cc/XNBcyXZT/IMG-20250804-WA0002.jpg" alt="সোফা সেট"></div>
       <h3 class="product-title">সোফা সেট</h3>
       <p>আপনার পছন্দ অনুযায়ী সোফা সেট</p>
       <div class="product-price">
@@ -347,7 +406,7 @@
     </div>
 
     <div class="product-card" data-price="200" data-category="accessory">
-      <div class="product-img-placeholder"><img src="https://i.postimg.cc/28MSCyBD/IMG-20250804-WA0003.jpg" alt="Product Image" width="90%" style="max-width:120px;border-radius:10px;margin-top:8px;"></div>
+      <div class="product-img-placeholder"><img src="https://i.postimg.cc/28MSCyBD/IMG-20250804-WA0003.jpg" alt="কাঠের নাগর দোলনা"></div>
       <h3 class="product-title">কাঠের নাগর দোলনা</h3>
       <p>নতুন কাঠের নাগর দোলা মডেল, আপনার ঘরের সজ্জা ও শিশুদের জন্য আদর্শ খেলনা!</p>
       <div class="product-price">
@@ -358,7 +417,7 @@
     </div>
 
     <div class="product-card" data-price="300" data-category="decor">
-      <div class="product-img-placeholder"><img src="https://i.postimg.cc/prM30Nm3/IMG-20250804-WA0004.jpg" alt="Product Image" width="100%" style="max-width:120px;border-radius:10px;margin-top:8px;"></div>
+      <div class="product-img-placeholder"><img src="https://i.postimg.cc/prM30Nm3/IMG-20250804-WA0004.jpg" alt="কাঠের নবাব বাড়ি"></div>
       <h3 class="product-title">কাঠের নবাব বাড়ি</h3>
       <p>কাঠের তৈরি নবাব বাড়ি</p>
       <div class="product-price">
@@ -369,7 +428,7 @@
     </div>
 
     <div class="product-card" data-price="300" data-category="accessory">
-      <div class="product-img-placeholder"><img src="https://i.postimg.cc/nr7yDJKp/file-0000000010ac62309982690d6c14b128.png" alt="Product Image" width="100%" style="max-width:140px;border-radius:10px;margin-top:8px;"></div>
+      <div class="product-img-placeholder"><img src="https://i.postimg.cc/nr7yDJKp/file-0000000010ac62309982690d6c14b128.png" alt="কাঠের ল্যাম্প হোল্ডার"></div>
       <h3 class="product-title">কাঠের ল্যাম্প হোল্ডার</h3>
       <p>ল্যাম্প হোল্ডার</p>
       <div class="product-price">
@@ -381,7 +440,7 @@
 
     <!-- New Products Added -->
     <div class="product-card" data-price="350" data-category="box">
-      <div class="product-img-placeholder"><img src="https://i.postimg.cc/7ZHqNz7w/IMG-20250804-WA0000.jpg" alt="Product Image" width="90%" style="max-width:120px;border-radius:10px;margin-top:9px;"></div>
+      <div class="product-img-placeholder"><img src="https://i.postimg.cc/7ZHqNz7w/IMG-20250804-WA0000.jpg" alt="জুয়েলারী বক্স"></div>
       <h3 class="product-title">জুয়েলারী বক্স</h3>
       <p>আপনার গহনা সংরক্ষণের জন্য সুন্দর কাঠের বক্স</p>
       <div class="product-price">
@@ -392,7 +451,7 @@
     </div>
 
     <div class="product-card" data-price="400" data-category="decor">
-      <div class="product-img-placeholder"><img src="https://i.postimg.cc/prM30Nm3/IMG-20250804-WA0004.jpg" alt="Product Image" width="100%" style="max-width:120px;border-radius:10px;margin-top:8px;"></div>
+      <div class="product-img-placeholder"><img src="https://i.postimg.cc/prM30Nm3/IMG-20250804-WA0004.jpg" alt="মসজিদ মডেল"></div>
       <h3 class="product-title">মসজিদ মডেল</h3>
       <p>কাঠের তৈরি সুন্দর মসজিদ মডেল</p>
       <div class="product-price">
@@ -403,7 +462,7 @@
     </div>
 
     <div class="product-card" data-price="450" data-category="gift">
-      <div class="product-img-placeholder"><img src="https://i.postimg.cc/jjG5v5tc/file-00000000d66861fda6d4f0b44b8322d3.png" alt="Product Image" width="90%" style="max-width:100px;border-radius:8px;margin-top:8px;"></div>
+      <div class="product-img-placeholder"><img src="https://i.postimg.cc/jjG5v5tc/file-00000000d66861fda6d4f0b44b8322d3.png" alt="প্রিমিয়াম কুরআন স্ট্যান্ড"></div>
       <h3 class="product-title">প্রিমিয়াম কুরআন স্ট্যান্ড</h3>
       <p>উচ্চমানের কাঠের কুরআন স্ট্যান্ড <span class="gift-badge">ফ্রি বুকমার্ক</span></p>
       <div class="product-price">
@@ -414,7 +473,7 @@
     </div>
 
     <div class="product-card" data-price="500" data-category="decor">
-      <div class="product-img-placeholder"><img src="https://i.postimg.cc/XNBcyXZT/IMG-20250804-WA0002.jpg" alt="Product Image" width="100%" style="max-width:200px;border-radius:9px;margin-top:9px;"></div>
+      <div class="product-img-placeholder"><img src="https://i.postimg.cc/XNBcyXZT/IMG-20250804-WA0002.jpg" alt="ডাইনিং টেবিল সেট"></div>
       <h3 class="product-title">ডাইনিং টেবিল সেট</h3>
       <p>ছোট পরিবারের জন্য কাঠের ডাইনিং টেবিল সেট</p>
       <div class="product-price">
@@ -425,7 +484,7 @@
     </div>
 
     <div class="product-card" data-price="600" data-category="gift">
-      <div class="product-img-placeholder"><img src="https://i.postimg.cc/28MSCyBD/IMG-20250804-WA0003.jpg" alt="Product Image" width="90%" style="max-width:120px;border-radius:10px;margin-top:8px;"></div>
+      <div class="product-img-placeholder"><img src="https://i.postimg.cc/28MSCyBD/IMG-20250804-WA0003.jpg" alt="প্রিমিয়াম গিফট বক্স"></div>
       <h3 class="product-title">প্রিমিয়াম গিফট বক্স</h3>
       <p>বিশেষ উপহারের জন্য প্রিমিয়াম কাঠের বক্স <span class="gift-badge">ফ্রি র্যাপিং</span></p>
       <div class="product-price">
@@ -630,4 +689,4 @@
   </script>
 
 </body>
-  </html>
+</html>
