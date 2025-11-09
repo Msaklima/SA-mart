@@ -6,7 +6,6 @@
     <title>Woodloom | প্রিমিয়াম কাঠের হস্তশিল্প</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
@@ -41,6 +40,7 @@
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
         }
         
         /* == ১. প্রাথমিক রিসেট ও গ্লোবাল স্টাইল (Woodloom লাইট থিম) == */
@@ -102,7 +102,7 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            padding: 10px 20px; /* লোগোর সাথে প্যাডিং কমানো হলো */
+            padding: 10px 20px; 
             background-color: var(--theme-dark-brown); 
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); 
             position: sticky; 
@@ -119,7 +119,7 @@
             align-items: center;
         }
         .logo img {
-            height: 40px; /* লোগোর সাইজ বাড়ানো হলো */
+            height: 40px; 
             width: auto;
             margin-right: 10px;
             filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
@@ -220,8 +220,8 @@
         }
         .card-image img {
             width: 100%;
-            height: 150px; /* ফিক্সড হাইট */
-            object-fit: cover; /* ছবি রিসাইজ হলেও ঠিক দেখাবে */
+            height: 150px; 
+            object-fit: cover; 
             margin-bottom: 10px;
         }
         .card-title { font-size: 17px; font-weight: 700; margin-bottom: 4px; color: var(--theme-dark-brown); }
@@ -232,7 +232,7 @@
             color: #999;
             margin-right: 5px;
         }
-
+        
         /* == ৪. পেমেন্ট পেজ স্টাইল == */
         .cashier-container { 
             max-width: 450px; 
@@ -279,7 +279,7 @@
             transition: border-color 0.3s, box-shadow 0.3s; 
             background-color: #ffffff;
             color: #333;
-            box-sizing: border-box; /* Width ঠিক রাখার জন্য */
+            box-sizing: border-box; 
         }
         .input-group input:focus, .input-group textarea:focus { 
             border-color: var(--theme-medium-brown); 
@@ -359,7 +359,45 @@
         .coupon-row .value {
             color: var(--theme-accent-green) !important;
         }
+        
+        /* == ৯. ডেলিভারি চার্জ স্টাইল (নতুন) == */
+        .delivery-selector {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .delivery-btn {
+            flex-grow: 1;
+            padding: 12px 5px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid var(--theme-medium-brown);
+            background-color: #ffffff;
+            color: var(--theme-dark-brown);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-size: 14px;
+        }
+        .delivery-btn.selected-delivery {
+            transform: scale(1.02);
+            border-width: 3px;
+            background-color: var(--theme-medium-brown);
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
+        .delivery-cost-row {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 12px; 
+            padding: 8px 0; 
+            border-bottom: 1px dashed #ddd;
+        }
+        
         /* == ৫. কনফার্মেশন মডাল == */
         .modal {
             display: none; 
@@ -499,7 +537,7 @@
         /* == ৭. টেস্টিমোনিয়াল সেকশন == */
         .testimonial-section {
             padding: 30px 15px;
-            background-color: #EFEBE9; /* Lighter Wood Tone */
+            background-color: #EFEBE9; 
             margin-top: 30px;
             border-top: 3px solid var(--theme-accent-gold);
             text-align: center;
@@ -561,7 +599,7 @@
             color: var(--theme-text-light); 
             padding: 5px; 
             transition: color 0.3s, transform 0.2s; 
-            flex-grow: 1; /* সমান জায়গা নিবে */
+            flex-grow: 1; 
             flex-basis: 0;
         }
         .nav-item i { font-size: 18px; margin-bottom: 3px; }
@@ -717,6 +755,20 @@
                 </div>
             </section>
             
+            <section class="delivery-option" style="margin-top: 25px;">
+                <span style="font-size:16px; font-weight:700; color:#16213e; display: block; margin-bottom: 15px;">
+                    <i class="fa-solid fa-truck-fast"></i> ডেলিভারি এলাকা নির্বাচন করুন:
+                </span>
+                
+                <div class="delivery-selector" role="radiogroup" aria-label="Delivery Area Selector">
+                    <button class="delivery-btn selected-delivery" id="delivery-dhaka-btn" data-charge="80" data-area="dhaka" role="radio" aria-checked="true">
+                        <i class="fa-solid fa-city"></i> ঢাকা সিটির মধ্যে (৳৮০)
+                    </button>
+                    <button class="delivery-btn" id="delivery-outside-btn" data-charge="150" data-area="outside" role="radio" aria-checked="false">
+                        <i class="fa-solid fa-globe"></i> ঢাকার বাহিরে (৳১৫০)
+                    </button>
+                </div>
+            </section>
             <div class="input-group" id="order-code-input-group" style="margin-top: 20px;">
                 <label for="order-code-input"><i class="fa-solid fa-ticket-alt"></i> ডিসকাউন্ট/কুপন কোড (ঐচ্ছিক):</label>
                 <input type="text" id="order-code-input" placeholder="কুপন কোড থাকলে এখানে বসান (যেমন: wood10)">
@@ -769,7 +821,11 @@
                             <span class="value" id="coupon-discount-amount">- 0.00 BDT</span>
                         </div>
                     </div>
-
+                    
+                    <div class="delivery-cost-row">
+                        <span class="label" style="font-weight: 700; color: #16213e;"><i class="fa-solid fa-truck" style="color:#e53935;"></i> ডেলিভারি চার্জ:</span>
+                        <span class="value" id="delivery-charge-amount" style="font-size: 16px; color: #e53935; font-weight: 800;">+ 0.00 BDT</span>
+                    </div>
                     <div class="detail-row" style="background-color: #e3f2fd; padding: 10px; border-radius: 6px; border-bottom: none;">
                         <span class="label" style="font-weight: 700; color: #16213e;"><i class="fa-solid fa-receipt" style="color:var(--theme-medium-brown);"></i> মোট পরিশোধ:</span>
                         <span class="value" id="amount-to-pay" style="font-size: 18px; color: #e53935; font-weight: 800;">0.00 BDT</span>
@@ -811,6 +867,7 @@
             <h3 id="modal-title"> চূড়ান্ত অর্ডার নিশ্চিতকরণ</h3>
             
             <p>পণ্য: <span id="modal-item-name"></span></p>
+            <p>ডেলিভারি এলাকা: <span id="modal-delivery-area"></span></p>
             <p>নাম: <span id="modal-customer-name"></span></p>
             <p>হোয়াটসঅ্যাপ: <span id="modal-customer-whatsapp"></span></p>
             <p id="modal-address-row">ঠিকানা: <span id="modal-customer-address"></span></p>
@@ -867,6 +924,7 @@
             <h3 style="color: #16213e; margin-top: 25px; border-left: 4px solid var(--theme-medium-brown); padding-left: 10px; margin-bottom: 15px;"><i class="fa-solid fa-cogs"></i> ১. অর্ডার প্রক্রিয়া</h3>
             <ol style="font-size: 15px; padding-left: 20px;">
                 <li style="margin-bottom: 10px;">হোমপেজ থেকে আপনার পছন্দের পণ্যটি নির্বাচন করুন।</li>
+                <li style="margin-bottom: 10px;"><strong style="color: var(--theme-accent-red);">ডেলিভারি এলাকা নির্বাচন করুন।</strong></li>
                 <li style="margin-bottom: 10px;">আপনার নাম, **হোয়াটসঅ্যাপ নম্বর** এবং **সম্পূর্ণ ডেলিভারি ঠিকানা** পূরণ করুন।</li>
                 <li style="margin-bottom: 10px;">বিকাশ/নগদ/রকেট নির্বাচন করে `01709288934` নম্বরে **সেন্ড মানি** করুন।</li>
                 <li style="margin-bottom: 10px;">প্রাপ্ত **ট্রানজেকশন আইডি (TxnID)** ইনপুট ফিল্ডে বসান।</li>
@@ -909,10 +967,7 @@
         // **************************************************
         // [ WOODLOOM - JavaScript কনফিগারেশন ]
         // **************************************************
-        const recipientEmail = "woodloom.orders@gmail.com"; // [পরিবর্তিত] আপনার ইমেইল
-        const accountBuyLink = "https://wa.me/8801709288934"; // কাস্টম অর্ডারের জন্য হোয়াটসঅ্যাপ
-        
-        // আপনার পেমেন্ট নম্বর
+        const recipientEmail = "woodloom.orders@gmail.com"; 
         const specificNumber = '01709288934'; 
         const cashoutNumbers = { bikash: specificNumber, nagad: specificNumber, rocket: specificNumber };
         
@@ -922,7 +977,6 @@
         // ** কুপন কোড সেটিংস **
         const VALID_COUPON_CODE = 'wood10'; // উদাহরণ কুপন
         const COUPON_DISCOUNT_AMOUNT = 30.00; // 30 টাকা ছাড়
-        let appliedCouponDiscount = 0; 
         
         // গ্লোবাল ভেরিয়েবল
         let selectedMethod = 'bikash';
@@ -932,7 +986,12 @@
         let isCustomAccountOrder = false; 
         let lastGeneratedOrderNumber = '';
         let currentSiteDiscountAmount = 0; 
+        let appliedCouponDiscount = 0; 
         let timerInterval; 
+
+        // ডেলিভারি চার্জ ভেরিয়েবল
+        let currentDeliveryCharge = 80; // ডিফল্ট: ঢাকা
+        let selectedDeliveryArea = 'dhaka'; 
 
         // == ১. মডাল ও পপআপ ফাংশন ==
 
@@ -982,6 +1041,10 @@
             document.getElementById('modal-customer-whatsapp').innerText = customerWhatsapp;
             document.getElementById('modal-customer-address').innerText = customerAddress; 
             document.getElementById('modal-final-amount').innerText = currentFinalAmount.toFixed(2).toLocaleString('bn-BD') + ' BDT';
+            
+            // ডেলিভারি এরিয়া
+            const deliveryAreaText = (selectedDeliveryArea === 'dhaka') ? 'ঢাকা সিটির মধ্যে' : 'ঢাকার বাহিরে';
+            document.getElementById('modal-delivery-area').innerText = `${deliveryAreaText} (৳${currentDeliveryCharge})`;
             
             // ইমেইল row
             if (customerEmail) {
@@ -1050,11 +1113,14 @@
             lastGeneratedOrderNumber = generateOrderNumber();
             document.getElementById('display-order-code').innerText = lastGeneratedOrderNumber;
             
+            const deliveryAreaText = (selectedDeliveryArea === 'dhaka') ? 'ঢাকা সিটির মধ্যে' : 'ঢাকার বাহিরে';
+
             // ইমেইল বডি টেক্সট
             let paymentDetails = `পেমেন্ট মেথড: ${methodText} (সেন্ড মানি)
 আসল মূল্য: ${currentOriginalAmount.toFixed(2)} টাকা
 সাইট ডিসকাউন্ট: -${currentSiteDiscountAmount.toFixed(2)} টাকা (২০%)
 কুপন ছাড় (${appliedCouponDiscount > 0 ? orderCodeInput : 'প্রয়োজন নেই'}): -${appliedCouponDiscount.toFixed(2)} টাকা
+ডেলিভারি চার্জ (${deliveryAreaText}): +${currentDeliveryCharge.toFixed(2)} টাকা
 মোট পরিশোধ: ${currentFinalAmount.toFixed(2)} টাকা
 ট্রানজেকশন আইডি: ${transactionId}
 স্ক্রিনশট লিংক: ${screenshotLink} `;
@@ -1102,7 +1168,7 @@ ${paymentDetails}
             isCustomAccountOrder = false;
         }
 
-        // ডিসকাউন্ট ও মূল্য গণনা
+        // ডিসকাউন্ট ও মূল্য গণনা (ডেলিভারি চার্জ সহ)
         function calculateAndDisplayAmount(originalPrice) {
             currentOriginalAmount = originalPrice;
             
@@ -1123,13 +1189,17 @@ ${paymentDetails}
                 document.getElementById('coupon-discount-row').style.display = 'none'; 
             }
             
-            // ৩. মোট ডিসকাউন্ট ও চূড়ান্ত মূল্য
+            // ৩. মোট ডিসকাউন্ট ও নেট মূল্য (ডিসকাউন্ট পর)
             const totalDiscount = currentSiteDiscountAmount + appliedCouponDiscount;
-            currentFinalAmount = currentOriginalAmount - totalDiscount;
+            let netAmount = currentOriginalAmount - totalDiscount;
+            
+            // ৪. ডেলিভারি চার্জ যোগ
+            currentFinalAmount = netAmount + currentDeliveryCharge;
             
             // পেমেন্ট পেজে ডিসপ্লে আপডেট করা
             document.getElementById('original-amount').innerText = currentOriginalAmount.toFixed(2).toLocaleString('bn-BD') + ' BDT';
             document.getElementById('site-discount-amount').innerText = `- ${currentSiteDiscountAmount.toFixed(2).toLocaleString('bn-BD')} BDT`;
+            document.getElementById('delivery-charge-amount').innerText = `+ ${currentDeliveryCharge.toFixed(2).toLocaleString('bn-BD')} BDT`; 
             document.getElementById('amount-to-pay').innerText = currentFinalAmount.toFixed(2).toLocaleString('bn-BD') + ' BDT';
         }
 
@@ -1190,6 +1260,8 @@ ${paymentDetails}
                 }
                 startTimer();
                 window.location.hash = '#payment-page'; 
+                // ডেলিভারি চার্জ ডিসপ্লে নিশ্চিত করা
+                document.getElementById('delivery-charge-amount').innerText = `+ ${currentDeliveryCharge.toFixed(2).toLocaleString('bn-BD')} BDT`;
             } else {
                  window.location.hash = ''; 
             }
@@ -1208,7 +1280,6 @@ ${paymentDetails}
             card.addEventListener('click', () => {
                 isCustomAccountOrder = false;
                 currentItemName = card.getAttribute('data-item');
-                // যেহেতু আপনি পণ্যের দাম দিয়েছেন, সেহেতু ডিসপ্লে করার জন্য ডিসকাউন্ট রেট ব্যবহার করা হবে।
                 const originalPrice = parseFloat(card.getAttribute('data-price')) || 0;
                 
                 document.getElementById('current-item-display').innerText = currentItemName;
@@ -1236,6 +1307,32 @@ ${paymentDetails}
                 let methodText = (selectedMethod === 'bikash') ? 'বিকাশ' : (selectedMethod === 'nagad') ? 'নগদ' : 'রকেট';
                 document.getElementById('selected-method-text').innerText = methodText;
                  copyToClipboard('cashout-number');
+            });
+        });
+
+        // ডেলিভারি বাটন লজিক
+        document.querySelectorAll('.delivery-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // পুরানো সিলেক্টেড বাটন থেকে ক্লাস সরাও
+                document.querySelector('.delivery-btn.selected-delivery').classList.remove('selected-delivery');
+                // নতুন বাটনে ক্লাস যোগ করো
+                button.classList.add('selected-delivery');
+                
+                // গ্লোবাল ভেরিয়েবল আপডেট
+                currentDeliveryCharge = parseFloat(button.getAttribute('data-charge'));
+                selectedDeliveryArea = button.getAttribute('data-area');
+
+                // মোট মূল্য পুনরায় গণনা ও ডিসপ্লে
+                if (currentOriginalAmount > 0 || isCustomAccountOrder) {
+                    let basePrice = currentOriginalAmount;
+                    if (isCustomAccountOrder) {
+                        basePrice = parseFloat(document.getElementById('custom-price').value) || 0;
+                    }
+                    calculateAndDisplayAmount(basePrice);
+                } else {
+                    // কোনো পণ্য নির্বাচিত না থাকলে শুধু ডেলিভারি চার্জ আপডেট করো
+                    document.getElementById('delivery-charge-amount').innerText = `+ ${currentDeliveryCharge.toFixed(2).toLocaleString('bn-BD')} BDT`;
+                }
             });
         });
 
@@ -1288,6 +1385,9 @@ ${paymentDetails}
         // == ৫. পেজ লোড লজিক ==
         
         function initializePage() {
+            // ডিফল্ট ঢাকা ডেলিভারি চার্জ নিশ্চিত করা
+            currentDeliveryCharge = 80;
+            selectedDeliveryArea = 'dhaka';
             showPage('home-page');
         }
 
@@ -1302,4 +1402,4 @@ ${paymentDetails}
         });
     </script>
 </body>
-              </html>
+    </html>
